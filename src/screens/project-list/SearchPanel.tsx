@@ -1,12 +1,31 @@
 import React from "react";
 
-export default function SearchPanel({ param, setParam,users }) {
+export interface User {
+  name: string;
+  id: string;
+  organization: string;
+}
+
+interface SearchPanelProps {
+  users: User[];
+  param: {
+    name: string;
+    personId: string;
+  };
+  setParam: (param: SearchPanelProps["param"]) => void;
+}
+
+export default function SearchPanel({
+  param,
+  setParam,
+  users,
+}: SearchPanelProps) {
   return (
     <form>
       <div>
         <input
           type="text"
-          value={param.value}
+          value={param.name}
           onChange={(e) =>
             setParam({
               ...param,
@@ -25,7 +44,11 @@ export default function SearchPanel({ param, setParam,users }) {
         >
           <option value="">负责人</option>
           {users.map((user) => {
-            return <option value={user.id} key={user.id}>{user.name}</option>;
+            return (
+              <option value={user.id} key={user.id}>
+                {user.name}
+              </option>
+            );
           })}
         </select>
       </div>
