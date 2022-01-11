@@ -4,8 +4,7 @@ import List from "./List";
 import SearchPanel from "./SearchPanel";
 import qs from "qs";
 const apiUrl = process.env.REACT_APP_API_URL;
-console.log(apiUrl);
-// const apiUrl = "http://localhost:4000";
+
 export default function ProjectList() {
   const [param, setParam] = useState({
     name: "",
@@ -16,6 +15,7 @@ export default function ProjectList() {
 
   const debouncedParams = useDebounce(param, 500);
 
+  // 防抖参数变化时请求
   useEffect(() => {
     fetch(
       `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParams))}`
@@ -25,6 +25,8 @@ export default function ProjectList() {
       }
     });
   }, [debouncedParams]);
+
+  // 挂载时执行
   useMount(() => {
     fetch(`${apiUrl}/users`).then(async (response) => {
       if (response.ok) {

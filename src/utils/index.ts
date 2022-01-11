@@ -15,12 +15,14 @@ export const cleanObject = (object: object) => {
   return result;
 };
 
+// 挂载 自定义Hook
 export const useMount = (callback: () => void) => {
   useEffect(() => {
     callback();
   }, []);
 };
 
+// 防抖 自定义Hook
 export const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -32,6 +34,7 @@ export const useDebounce = <V>(value: V, delay?: number) => {
   return debouncedValue;
 };
 
+// 数组 自定义Hook
 export const useArray = <T>(initialArray: T[]) => {
   const [value, setValue] = useState(initialArray);
 

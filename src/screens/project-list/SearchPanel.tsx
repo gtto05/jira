@@ -4,6 +4,7 @@ export interface User {
   name: string;
   id: string;
   organization: string;
+  token: string;
 }
 
 interface SearchPanelProps {
