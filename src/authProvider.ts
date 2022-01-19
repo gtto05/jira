@@ -43,5 +43,6 @@ export const register = (data: { username: string; password: string }) => {
   });
 };
 
+// 忽略
 export const logout: any = async () =>
   window.localStorage.removeItem(localStorageKey);
